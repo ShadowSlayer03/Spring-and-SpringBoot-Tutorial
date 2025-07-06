@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="alien" class="org.arjun.Alien">
+
+        <!--The parameterized constructor works based on the order, first age then Laptop.-->
+        <!--But if we mix the order, then we have to mention the corresponding type.-->
+
+        <!--        <constructor-arg type="org.arjun.Laptop" ref="laptop"/>-->
+        <!--        <constructor-arg type="int" value="21"/>-->
+
+        <!--But another problem arises, that there could be 2 variables in the class with same type.-->
+        <!--In that case we have to either use 'index' or 'name'. If we use 'name' then we have to specify @ConstructorProperties for the param constructor.-->
+
+        <!--        <constructor-arg index="1" ref="laptop"/>-->
+        <!--        <constructor-arg index="0" value="21"/>-->
+        <!--        <constructor-arg index="2" value="1000000"/>-->
+
+        <!--                <constructor-arg name="lap" ref="laptop"/>-->
+        <!--                <constructor-arg name="age" value="21"/>-->
+        <!--                <constructor-arg name="salary" value="100000"/>-->
+
+        <property name="age" value="5"/>
+        <property name="com">
+            <!--This bean is now the inner bean, which can be used only inside the Alien class.-->
+            <!--If specified outside, then the bean will be available inside any other class.-->
+            <bean id="com1" class="org.arjun.Laptop" primary="true">
+            </bean>
+        </property>
+    </bean>
+
+
+    <!--    <bean id="com2" class="org.arjun.Desktop" lazy-init="true">-->
+    <!--    </bean>-->
+
+</beans>
